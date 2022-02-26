@@ -1,0 +1,92 @@
+*, html {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    background-color: #F6F6F6;
+}
+
+header {
+    display: flex;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+    background-color: #f6424c;
+}
+
+.logo {
+    height: 52px;
+    width: 183px;
+    padding-right: 30px;
+    background-color: transparent;
+}
+
+main {
+    margin: auto;
+    width: 70%;
+    background-color:#F6F6F6;
+}
+
+main h1 {
+    padding: 8px;
+    color: #666666;
+    font-size: 1.6em;
+}
+
+.cardList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+footer {    
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    background-color: rgb(234, 234, 234);
+    color: #A6A1B6;
+    font-size: 0.8em;
+    padding: 8px;
+}
+
+.footerTop, .footerBottom {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-top: 10px;
+    background-color: transparent;
+}
+
+footer p {
+    background-color: transparent;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .logo {
+        height: 32px;
+        width: 153px;
+        padding-right: 10px;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+
+    footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footerBottom {
+        margin-left: 50px;
+    }    
+
+    .footerBottom img {
+        width: 180px;        
+    }
+}
