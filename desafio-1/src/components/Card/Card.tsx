@@ -1,7 +1,9 @@
 import React from "react";
 import styled from 'styled-components';
-import Teste from '../../assets/products/teste.png';
 import { getImg } from "../../models/ImgProductsMapping";
+import { getPrices } from "../../models/PricesProductsMapping";
+import GoldenStar from '../../assets/icons/golden-star.png';
+import EmptyStar from '../../assets/icons/empty-star.png';
 
 const StyledCard = styled.div `
     
@@ -34,7 +36,14 @@ const StyledCard = styled.div `
     }
 
     .score {
+        display: flex;
+        align-items: center;
         margin-bottom: 20px;
+    }
+
+    .score img {
+        width: 8%;
+        height: 8%;
     }
 
     img {
@@ -43,9 +52,9 @@ const StyledCard = styled.div `
     }
 `;
 
+
 export const Card = (props: any) => {
-    console.log('>>>', props.id)
-    console.log('>>>', getImg(props.id))
+    
     return (
         <StyledCard>
             <div className="cardGroup">
@@ -56,13 +65,13 @@ export const Card = (props: any) => {
                             {props.title}
                         </h2>
                         <div className="score">
-                            ????????
+                            <img src={GoldenStar} alt= 'Ratings' /> ({props.clicks})
                         </div>
                         <h3 className="cardPrice">
-                            R$35.00
+                            R${getPrices(props.prices)}
                         </h3>
                         <p>
-                            em 1x no cartão de crédito
+                            em {props.times}x no cartão de crédito
                         </p>
                     </div>
                 </div>

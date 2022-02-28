@@ -18,15 +18,16 @@ function HomePage() {
   }
 
   useEffect(() => {
-    getProducts()
+    getProducts() 
   }, []);
 
   const [searchInput, setSearchInput] = useState('');
 
-  const searchItems = (searchValue: any) => {
+  const searchItems = (searchValue: string) => {
+    
     setSearchInput(searchValue)
     if (searchInput !== '') {
-      const filteredData = products.filter((item: any) => {
+      const filteredData = products.filter((item: string) => {
         return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
       })
       setFilteredResults(filteredData)
@@ -36,25 +37,36 @@ function HomePage() {
     }
   }
 
-  const filteredData = products.filter((item: any) => {
-    return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
-  })
-
   const [filteredResults, setFilteredResults] = useState([]);
 
-
+  const textInput: any = React.createRef();
 
   return (
-    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '100vh', height: '100%'}}>
+    <div className='homePage'>
       <div>
         <header>
           <img className='logo' src={AmericanasLogoHeader} alt='Logo Americanas' />
-          <SearchBar onClick={getProducts} onChange={(e: any) => searchItems(e.target.value)} />
+          <SearchBar  
+            textInput = {textInput} 
+
+            onKeyPress = {(e: any) => {
+              if (e.key === 'Enter') {
+                searchItems(e.target.value) 
+              }
+            }
+          }
+
+            onClick = {() => {
+              searchItems(textInput.current.value)
+              }              
+            }
+
+          />
         </header>
 
         <main>
           <div className="headline">
-            {searchInput.length >= 2 ? (
+            {searchInput.length > 0 ? (
               <h1>os itens mais vendidos :)</h1>
             ) : (<h1>Desafio proposto pela Calindra ;)</h1>)}
           </div>
@@ -64,7 +76,13 @@ function HomePage() {
             {searchInput.length >= 2 ? (
               filteredResults.map((product: any) => {
                 return (
-                  <Card title={product.name} id={product.id} />
+                  <Card 
+                    title={product.name} 
+                    id={product.id} 
+                    prices={product.id} 
+                    clicks={product._meta.visitsClickCount}
+                    times={product._meta.score.toString()[1]}
+                  />
                 )
               })
             ) : (

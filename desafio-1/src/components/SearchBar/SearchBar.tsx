@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import SearchIcon from '../../assets/icons/search.svg';
 
 
-const StyledSearchBar = styled.div `
+const StyledSearchBar = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,23 +58,22 @@ const StyledSearchBar = styled.div `
     } 
 `;
 
-export const SearchBar = (props: any) => {
-
-    return (         
-        
+export const SearchBar = (props: any) => {    
+    
+    return (
         <StyledSearchBar>
-            <div className="box">               
-
-                <input 
-                    type="text" 
+            <div className="box">
+                <input
+                    ref={props.textInput}
+                    type="text"
                     placeholder="busque aqui seu produto"
+                    onKeyPress={props.onKeyPress}
                     onChange={props.onChange}
-                />               
-                
+                />
                 <button onClick={props.onClick}>
-                    <img src={SearchIcon} alt="Search Icon" />               
+                    <img src={SearchIcon} alt="Search Icon" />
                 </button>
-            </div>  
+            </div>
         </StyledSearchBar>
     );
 }

@@ -42,7 +42,7 @@ const StyledCard = styled.div `
     }
 `;
 
-export const WelcomeCard = (props: any) => {
+export const WelcomeCard = () => {
     return (
         <StyledCard>
             <div className="cardGroup">
@@ -54,7 +54,7 @@ export const WelcomeCard = (props: any) => {
                         </h2>
                         
                         <h3 className="repositorio">
-                            <a href="#">Clica aqui pra ver o repositório!</a>
+                            <a href="/">Clica aqui pra ver o repositório!</a>
                         </h3>
 
                         <div className="socialMedia">
