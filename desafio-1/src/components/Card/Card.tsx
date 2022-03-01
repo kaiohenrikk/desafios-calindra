@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from 'styled-components';
 import { getImg } from "../../models/ImgProductsMapping";
 import { getPrices } from "../../models/PricesProductsMapping";
@@ -39,6 +39,7 @@ const StyledCard = styled.div `
         display: flex;
         align-items: center;
         margin-bottom: 20px;
+        font-size: 80%;
     }
 
     .score img {
@@ -65,7 +66,8 @@ export const Card = (props: any) => {
                             {props.title}
                         </h2>
                         <div className="score">
-                            <img src={GoldenStar} alt= 'Ratings' /> ({props.clicks})
+                            <img src={GoldenStar} alt= 'Ratings' />                           
+                            ({props.clicks})
                         </div>
                         <h3 className="cardPrice">
                             R${getPrices(props.prices)}

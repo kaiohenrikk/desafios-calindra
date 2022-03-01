@@ -7,6 +7,7 @@ import CalindraLogo from '../assets/logos/calindra.svg';
 import { Card } from '../components/Card/Card';
 import ProductService from '../services/ProductServices';
 import { WelcomeCard } from '../components/WelcomeCard/WelcomeCard';
+import GoldenStar from '../assets/icons/golden-star.png';
 
 function HomePage() {
   const [products, setProducts]: any[] = useState([])
@@ -18,13 +19,13 @@ function HomePage() {
   }
 
   useEffect(() => {
-    getProducts() 
+    getProducts()
   }, []);
 
   const [searchInput, setSearchInput] = useState('');
 
   const searchItems = (searchValue: string) => {
-    
+
     setSearchInput(searchValue)
     if (searchInput !== '') {
       const filteredData = products.filter((item: string) => {
@@ -46,50 +47,86 @@ function HomePage() {
       <div>
         <header>
           <img className='logo' src={AmericanasLogoHeader} alt='Logo Americanas' />
-          <SearchBar  
-            textInput = {textInput} 
+          <SearchBar
+            textInput={textInput}
 
-            onKeyPress = {(e: any) => {
+            onKeyPress={(e: any) => {
               if (e.key === 'Enter') {
-                searchItems(e.target.value) 
+                searchItems(e.target.value)
+                console.log(filteredResults)
               }
             }
-          }
+            }
 
-            onClick = {() => {
+            onClick={() => {
               searchItems(textInput.current.value)
-              }              
+            }
             }
 
           />
         </header>
 
         <main>
-          <div className="headline">
-            {searchInput.length > 0 ? (
-              <h1>os itens mais vendidos :)</h1>
-            ) : (<h1>Desafio proposto pela Calindra ;)</h1>)}
-          </div>
-
-
-          <div className='cardList'>
-            {searchInput.length >= 2 ? (
-              filteredResults.map((product: any) => {
-                return (
-                  <Card 
-                    title={product.name} 
-                    id={product.id} 
-                    prices={product.id} 
-                    clicks={product._meta.visitsClickCount}
-                    times={product._meta.score.toString()[1]}
-                  />
-                )
-              })
+          {filteredResults.length === 0 && searchInput.length !== 0 ? (
+            <div className='invalidSearch'>
+              <h1>poxa, nenhum resultado para "{searchInput}"</h1>
+              <h2>Que tal pesquisar de novo seguindo as dicas abaixo? ;)</h2>
+              <div id='helpList'>
+                <ul>
+                  <li>Confira se o termo foi digitado certinho;</li>
+                  <li>Use menos palavras ou termos menos específicos;</li>
+                  <li>Tente outro produto.</li>
+                </ul>
+              </div>
+              <div className="helpOptions">
+                <div className="options">
+                  <h2 className="optionsText">precisa de ajuda? fala com a gente</h2>
+                  <p className="optionsText">Nosso atendimento é de segunda a sexta, das 8h às 20h, e sábado, das 8h às 18h :)</p>
+                </div>
+                <div className="options">
+                  <h2 className="optionsText">por telefone:</h2>
+                  <p className="optionsText">
+                    Capitais e regiões metropolitanas: 4003-4848*<br/>
+                    Estado do Rio de Janeiro: 0800 229 4848<br/>
+                    Outras regiões: 041 11 4003-4848*<br/>
+                  </p>
+                </div>
+                <div className="options">
+                  <h2 className="optionsText">por e-mail:</h2>
+                  <p className="optionsText">atendimento.acom@americanas.com</p>
+                  <p className="optionsText">Se preferir, acesse nossas <a href='/'>perguntas frequentes</a> ;)</p>
+                </div>
+              </div>
+            </div>             
+          ) : (
+            searchInput.length > 0 ? (
+              <>
+                <h1>resultados para "{searchInput}"</h1>
+                <div className='cardList'>
+                  {searchInput.length >= 2 ? (
+                    filteredResults.map((product: any) => {
+                      return (
+                        <Card
+                          title={product.name}
+                          id={product.id}
+                          prices={product.id}
+                          clicks={product._meta.visitsClickCount}
+                          times={product._meta.score.toString()[1]}
+                        />
+                      )
+                    })
+                  ) : (
+                    null
+                  )}
+                </div>
+              </>
             ) : (
-              <WelcomeCard />
-            )}
-          </div>
-
+              <div>
+                <h1>Desafio proposto pela Calindra ;)</h1>
+                <WelcomeCard />
+              </div>
+            )
+          )}
         </main>
       </div>
 
