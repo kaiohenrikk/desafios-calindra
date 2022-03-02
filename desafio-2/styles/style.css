@@ -1,15 +1,339 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+body {
+    height: 100vh;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header #dropDown {
+    display: none;
 }
 
 nav {
     display: flex;
-    justify-content: center;
+    height: 110px;
+    padding: 45px;
+    width: 100%;
     align-items: center;
 }
 
-#home {
-    text-align: left;
+nav #logo  {
+    display: flex;
+    width: 50%;
+    justify-content: flex-start;
+}
+
+nav #brand {
+    width: 168px;
+    height: 48px;
+    left: 147px;
+    top: 20px;
+    font-size: 41.2px;
+    line-height: 48px;
+    font-weight: bolder;
+    color: #846219;
+}
+
+nav #slogan { 
+    height: 19px;
+    left: 151px;
+    top: 68px;
+    font-size: 16.2px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    letter-spacing: 5.4px;
+    color: #846219;
+}
+
+nav #homeText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 20px;
+}
+
+nav #optionsBox {
+    display: flex;
+    width: 45%;
+    justify-content: space-between;
+}
+
+nav .options {
+    text-decoration: none;
+    height: 19px;
+    left: 812px;
+    top: 47px;
+    font-size: 16.2px;
+    line-height: 19px;
+    letter-spacing: 5.4px;
+    color: #846219;
+}
+
+main {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+main #topSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 914px;
+    background-color: #E9E9E9;
+}
+
+main h1 {   
+    width: 348px;
+    height: 192px;
+    top: 425px;
+    font-size: 82.2px;
+    line-height: 96px;
+    color: #716565;
+}
+
+main #topImg {
+    width: 682px;
+    height: 335px;
+    top: 345px;
+    mix-blend-mode: multiply;
+}
+
+main #bottomSection {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+    height: 1024px;
+    background: #506FA9;
+}
+
+main h2 {
+    position: absolute;
+    width: 484px;
+    height: 162px;
+    left: 159px;
+    top: 1473px;
+    font-size: 69.2px;
+    line-height: 81px;
+    display: flex;
+    align-items: flex-end;
+    color: #FFFFFF;
+}
+
+#bottomSection p {
+    position: absolute;
+    width: 493px;
+    height: 171px;
+    left: 159px;
+    top: 1661px;
+    font-size: 48.2px;
+    line-height: 56px;
+    display: flex;
+    align-items: flex-end;
+    color: #FFFFFF;
+}
+
+main #bottomImg {
+    width: 1038px;
+    height: 689px;
+    left: 402px;
+    top: 1107px;
+    mix-blend-mode: multiply;
+}
+
+footer {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    height: 226px;
+    left: 0px;
+    top: 2048px;
+    background: #E9E9E9;
+}
+
+footer #footerBox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    width: 100%;
+    margin-left: 11%;
+}
+
+footer #followUs {
+    width: 25%;
+    padding-bottom: 12px;
+    margin-right: 9%;
+}
+
+footer h3 {  
+    font-size: 27.2px;
+    line-height: 32px;
+    color: #716565;
+}
+
+footer p {
+    font-size: 16.2px;
+    line-height: 19px;
+    color: #716565;
+}
+
+@media only screen and (max-width: 1058px) {
+    header #homeText, header #optionsBox {
+        display: none;
+    }
+
+    header #logo {
+        width: 100%;
+        justify-content: center;
+    }
+
+    header #dropDown {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        height: 30px;
+        cursor: pointer;
+        padding-left: 15px;
+    }
+
+    #dropDown img {
+        width: 7px;
+    }
+      
+    .dropDownContent {
+        display: none;
+        background-color: #f9f9f9;
+        min-height: 100px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        padding: 12px 16px;
+        z-index: 1;
+    }
+    
+    .dropDown:hover .dropDownContent {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        position: fixed;
+        margin: 35px;
+    }
+    
+    .dropDownContent a {
+        text-decoration: none;
+        color: #846219;
+    }
+
+    main #topSection {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 568px;
+    }
+
+    main h1 {   
+        justify-content: flex-start;
+        height: 200px;
+        width: 300px;
+        font-size: 53.2px;
+        line-height: 62px;        
+    }
+
+    main #topImg {
+        width: 285px;
+        height: 140px;
+        top: 345px;
+        mix-blend-mode: multiply;
+    }
+
+    main #bottomSection {
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 568px;
+        width: 100%;
+    }
+
+    main h2 {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 288px;
+        height: 96px;
+        left: 14px;
+        top: 644px;
+        font-size: 41.2px;
+        line-height: 48px;
+    }
+
+    main #bottomImg {
+        position: relative;
+        width: 259px;
+        height: 172px;
+        top: 130px;
+        left: 77px;
+    }
+
+    #bottomSection p {
+        width: 293px;
+        height: 90px;
+        left: 14px;
+        top: 762px;
+        font-size: 26.2px;
+        line-height: 31px;
+    }
+
+    footer {
+        position: relative;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        height: 274px;
+        left: 0px;
+        top: 1134px;
+        background: #E9E9E9;
+    }
+
+    footer #footerBox {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-left: 0;
+        padding-top: 50px;
+    }
+
+    footer #followUs {
+        margin-left: 68%;
+        width: 100%;
+        height: 100%;
+        padding-bottom: 0;
+        margin-right: 0;
+        margin-bottom: 25px;
+    }
+
+    footer h3 {  
+        
+    }
 }
