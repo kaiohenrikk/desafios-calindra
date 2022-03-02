@@ -44,7 +44,8 @@ function HomePage() {
     <div className='homePage'>
       <div>
         <header>
-          <img className='logo' src={AmericanasLogoHeader} alt='Logo Americanas' />
+          <a href="https://www.americanas.com.br/" rel="noreferrer" target="_blank"><img className='logo' src={AmericanasLogoHeader} alt='Logo Americanas' /></a>
+
           <SearchBar
             textInput={textInput}
 
@@ -131,11 +132,11 @@ function HomePage() {
 
       <footer>
         <div className='footerTop'>
-          <img className='logo' src={AmericanasLogoFooter} alt='Logo Americanas' />
+          <a href="https://www.americanas.com.br/" rel="noreferrer" target="_blank"><img className='logo' src={AmericanasLogoFooter} alt='Logo Americanas' /></a>
           <p>Tudo. A toda hora. Em qualquer lugar.</p>
         </div>
         <div className='footerBottom'>
-          <img className='logo' src={CalindraLogo} alt='Logo Calindra' />
+          <a href="https://calindra.tech/" rel="noreferrer" target="_blank"><img className='logo' src={CalindraLogo} alt='Logo Calindra' /></a>
           <p>Digital execution; We are Calindra.</p>
         </div>
       </footer>
