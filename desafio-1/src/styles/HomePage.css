@@ -54,6 +54,7 @@ main h1 {
 
 .invalidSearch h1 {
     font-weight: lighter;
+    margin-bottom: 10px;
 }
 
 .invalidSearch h1 h2 p, #helpList {
@@ -68,15 +69,17 @@ main h1 {
     font-size: 18px;
 }
 
+.invalidSearch h2, .helpOptions {
+    margin-top: 10px;
+}
+
 .helpOptions {
     display: flex;
     background-color: rgb(250, 250, 250);
     border-radius: 8px;
     width: 100%;
     padding: 24px;
-    -webkit-box-align: center;
     align-items: center;
-    -webkit-box-pack: justify;
     justify-content: space-between;
     margin-top: 20px;
     
@@ -144,6 +147,10 @@ footer {
     .invalidSearch h2, p {
         padding: 5px;
         color: #333333;
+    }
+
+    .invalidSearch h2 {
+        margin-top: 5px;
     }
 
     main h1 {

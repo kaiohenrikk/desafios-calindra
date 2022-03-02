@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from 'styled-components';
 import { getImg } from "../../models/ImgProductsMapping";
 import { getPrices } from "../../models/PricesProductsMapping";
@@ -55,18 +55,26 @@ const StyledCard = styled.div `
 
 
 export const Card = (props: any) => {
-    
+    const defaultStar = [EmptyStar, EmptyStar, EmptyStar, EmptyStar, EmptyStar];
     return (
         <StyledCard>
             <div className="cardGroup">
-                <div className="card">
+                <div 
+                    className="card"
+                    key={props.id}
+                >
                     <div className="cardBody">
-                        <img src={getImg(props.id)} alt={props.title} />
+                        <img src={getImg(props.id)} alt={props.title} /> 
                         <h2 className="cardTitle">
                             {props.title}
                         </h2>
                         <div className="score">
-                            <img src={GoldenStar} alt= 'Ratings' />                           
+                            {defaultStar.map((star, key) => {
+                                if(key < props.score[0]) {
+                                    return <img key={key} src={GoldenStar} alt= 'Ratings' /> 
+                                }
+                                return <img key={key} src={star} alt= 'Ratings' /> 
+                            })}                                                      
                             ({props.clicks})
                         </div>
                         <h3 className="cardPrice">

@@ -7,7 +7,6 @@ import CalindraLogo from '../assets/logos/calindra.svg';
 import { Card } from '../components/Card/Card';
 import ProductService from '../services/ProductServices';
 import { WelcomeCard } from '../components/WelcomeCard/WelcomeCard';
-import GoldenStar from '../assets/icons/golden-star.png';
 
 function HomePage() {
   const [products, setProducts]: any[] = useState([])
@@ -15,7 +14,6 @@ function HomePage() {
   async function getProducts() {
     const products: any[] = await ProductService.getProducts()
     setProducts(products)
-    console.log(products)
   }
 
   useEffect(() => {
@@ -24,12 +22,13 @@ function HomePage() {
 
   const [searchInput, setSearchInput] = useState('');
 
-  const searchItems = (searchValue: string) => {
+  const [filteredResults, setFilteredResults] = useState([]);
 
+  const searchItems = (searchValue: string) => {
     setSearchInput(searchValue)
-    if (searchInput !== '') {
+    if (searchValue !== '') {
       const filteredData = products.filter((item: string) => {
-        return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
+        return Object.values(item).join('').toLowerCase().includes(searchValue.toLowerCase())
       })
       setFilteredResults(filteredData)
     }
@@ -37,8 +36,6 @@ function HomePage() {
       setFilteredResults(products)
     }
   }
-
-  const [filteredResults, setFilteredResults] = useState([]);
 
   const textInput: any = React.createRef();
 
@@ -53,7 +50,6 @@ function HomePage() {
             onKeyPress={(e: any) => {
               if (e.key === 'Enter') {
                 searchItems(e.target.value)
-                console.log(filteredResults)
               }
             }
             }
@@ -86,9 +82,9 @@ function HomePage() {
                 <div className="options">
                   <h2 className="optionsText">por telefone:</h2>
                   <p className="optionsText">
-                    Capitais e regiões metropolitanas: 4003-4848*<br/>
-                    Estado do Rio de Janeiro: 0800 229 4848<br/>
-                    Outras regiões: 041 11 4003-4848*<br/>
+                    Capitais e regiões metropolitanas: 4003-4848*<br />
+                    Estado do Rio de Janeiro: 0800 229 4848<br />
+                    Outras regiões: 041 11 4003-4848*<br />
                   </p>
                 </div>
                 <div className="options">
@@ -97,7 +93,7 @@ function HomePage() {
                   <p className="optionsText">Se preferir, acesse nossas <a href='/'>perguntas frequentes</a> ;)</p>
                 </div>
               </div>
-            </div>             
+            </div>
           ) : (
             searchInput.length > 0 ? (
               <>
@@ -107,8 +103,10 @@ function HomePage() {
                     filteredResults.map((product: any) => {
                       return (
                         <Card
+                          key={product.id}
                           title={product.name}
                           id={product.id}
+                          score={product._meta.score.toString()}
                           prices={product.id}
                           clicks={product._meta.visitsClickCount}
                           times={product._meta.score.toString()[1]}
