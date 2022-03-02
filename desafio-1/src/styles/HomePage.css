@@ -129,6 +129,7 @@ footer {
 }
 
 @media only screen and (max-width: 600px) {
+    
 
     .helpOptions {
         display: none;
@@ -141,7 +142,6 @@ footer {
         flex-direction: column;
         background-color: #fff;
         padding: 0px 30px 30px 30px;
-        margin-top: 70px;
     }
 
     .invalidSearch h2, p {
@@ -153,11 +153,21 @@ footer {
         margin-top: 5px;
     }
 
+    main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 65vh;
+        width: 100%;
+        
+    }
+
     main h1 {
         padding: 8px;
         color: #666666;
         font-size: 1.6em;
         margin: 15px 10px 0px 10px;
+        cursor: pointer;
     }
 
     footer {
@@ -175,6 +185,7 @@ footer {
         height: 32px;
         width: 123px;
         padding-right: 10px;
+        
     }
 }
 

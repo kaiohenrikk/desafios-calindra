@@ -14,6 +14,7 @@ function HomePage() {
   async function getProducts() {
     const products: any[] = await ProductService.getProducts()
     setProducts(products)
+    console.log(products)
   }
 
   useEffect(() => {
@@ -27,8 +28,8 @@ function HomePage() {
   const searchItems = (searchValue: string) => {
     setSearchInput(searchValue)
     if (searchValue !== '') {
-      const filteredData = products.filter((item: string) => {
-        return Object.values(item).join('').toLowerCase().includes(searchValue.toLowerCase())
+      const filteredData = products.filter((item: any) => {
+        return Object.values(item.name).join('').toLowerCase().includes(searchValue.toLowerCase())
       })
       setFilteredResults(filteredData)
     }
@@ -99,7 +100,7 @@ function HomePage() {
               <>
                 <h1>resultados para "{searchInput}"</h1>
                 <div className='cardList'>
-                  {searchInput.length >= 2 ? (
+                  {searchInput.length >= 1 ? (
                     filteredResults.map((product: any) => {
                       return (
                         <Card
