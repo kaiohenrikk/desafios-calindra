@@ -2,7 +2,7 @@ import ProductService from '../services/ProductServices';
 
   describe("Products Test", () => {
 
-    const productFake = {
+    const fakeProduct = {
         _meta: { score: 345.77496, visitsClickCount: '779' },
         id: '56664056',
         name: 'Kit Com 5 Camisetas Básicas Esportivas Masculina Preta, Branca E Cinza',
@@ -15,11 +15,11 @@ import ProductService from '../services/ProductServices';
 
         expect(res).not.toBeInstanceOf(Error)
 
-        expect(product.id).toBe(productFake.id)
-        expect(product.name).toBe(productFake.name)
-        expect(product.type).toBe(productFake.type)
-        expect(product._meta.score).toBe(productFake._meta.score)
-        expect(product._meta.visitsClickCount).toBe(productFake._meta.visitsClickCount)
+        expect(product.id).toBe(fakeProduct.id)
+        expect(product.name).toBe(fakeProduct.name)
+        expect(product.type).toBe(fakeProduct.type)
+        expect(product._meta.score).toBe(fakeProduct._meta.score)
+        expect(product._meta.visitsClickCount).toBe(fakeProduct._meta.visitsClickCount)
     })
 
 })

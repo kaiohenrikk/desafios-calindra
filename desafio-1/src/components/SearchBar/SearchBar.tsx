@@ -7,7 +7,6 @@ const StyledSearchBar = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    -webkit-user-select: none;
 
     .box {
         background-color: white;

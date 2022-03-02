@@ -6,7 +6,6 @@ import AmericanasLogoFooter from '../assets/logos/americanas-vermelho.svg';
 import CalindraLogo from '../assets/logos/calindra.svg';
 import { Card } from '../components/Card/Card';
 import ProductService from '../services/ProductServices';
-import { WelcomeCard } from '../components/WelcomeCard/WelcomeCard';
 
 function HomePage() {
   const [products, setProducts]: any[] = useState([])
@@ -44,23 +43,21 @@ function HomePage() {
     <div className='homePage'>
       <div>
         <header>
-          <a href="https://www.americanas.com.br/" rel="noreferrer" target="_blank"><img className='logo' src={AmericanasLogoHeader} alt='Logo Americanas' /></a>
+          <a href="/" rel="noreferrer" target="self"><img className='logo' src={AmericanasLogoHeader} alt='Logo Americanas' /></a>
 
           <SearchBar
             textInput={textInput}
 
             onKeyPress={(e: any) => {
               if (e.key === 'Enter') {
-                searchItems(e.target.value)
+                  searchItems(e.target.value)
+                }
               }
             }
-            }
-
             onClick={() => {
-              searchItems(textInput.current.value)
+                searchItems(textInput.current.value)
+              }
             }
-            }
-
           />
         </header>
 
@@ -101,7 +98,7 @@ function HomePage() {
               <>
                 <h1>resultados para "{searchInput}"</h1>
                 <div className='cardList'>
-                  {searchInput.length >= 1 ? (
+                  {searchInput.length >= 0 ? (
                     filteredResults.map((product: any) => {
                       return (
                         <Card
@@ -121,10 +118,24 @@ function HomePage() {
                 </div>
               </>
             ) : (
-              <div>
-                <h1>Desafio proposto pela Calindra ;)</h1>
-                <WelcomeCard />
-              </div>
+              <>
+                <h1>os produtos mais vendidos</h1>
+                <div className='cardList'>
+                  {products.map((product: any) => {
+                    return (
+                      <Card
+                        key={product.id}
+                        title={product.name}
+                        id={product.id}
+                        score={product._meta.score.toString()}
+                        prices={product.id}
+                        clicks={product._meta.visitsClickCount}
+                        times={product._meta.score.toString()[1]}
+                      />
+                    )
+                  })}
+                </div>
+              </>
             )
           )}
         </main>
@@ -132,7 +143,7 @@ function HomePage() {
 
       <footer>
         <div className='footerTop'>
-          <a href="https://www.americanas.com.br/" rel="noreferrer" target="_blank"><img className='logo' src={AmericanasLogoFooter} alt='Logo Americanas' /></a>
+          <a href="/" rel="noreferrer" target="self"><img className='logo' src={AmericanasLogoFooter} alt='Logo Americanas' /></a>
           <p>Tudo. A toda hora. Em qualquer lugar.</p>
         </div>
         <div className='footerBottom'>
