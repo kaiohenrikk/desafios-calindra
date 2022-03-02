@@ -96,25 +96,21 @@ function HomePage() {
           ) : (
             searchInput.length > 0 ? (
               <>
-                <h1>resultados para "{searchInput}"</h1>
+                <h1>os produtos mais vendidos</h1>
                 <div className='cardList'>
-                  {searchInput.length >= 0 ? (
-                    filteredResults.map((product: any) => {
-                      return (
-                        <Card
-                          key={product.id}
-                          title={product.name}
-                          id={product.id}
-                          score={product._meta.score.toString()}
-                          prices={product.id}
-                          clicks={product._meta.visitsClickCount}
-                          times={product._meta.score.toString()[1]}
-                        />
-                      )
-                    })
-                  ) : (
-                    ''
-                  )}
+                  {filteredResults.map((product: any) => {
+                    return (
+                      <Card
+                        key={product.id}
+                        title={product.name}
+                        id={product.id}
+                        score={product._meta.score.toString()}
+                        prices={product.id}
+                        clicks={product._meta.visitsClickCount}
+                        times={product._meta.score.toString()[1]}
+                      />
+                    )
+                  })}
                 </div>
               </>
             ) : (
