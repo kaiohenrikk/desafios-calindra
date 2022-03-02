@@ -11,6 +11,7 @@ const StyledCard = styled.div `
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-right: 9px;
         color: #666666;
     }
     

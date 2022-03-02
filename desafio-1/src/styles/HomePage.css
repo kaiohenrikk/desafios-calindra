@@ -138,7 +138,7 @@ footer {
     .invalidSearch {
         background-color: #fff;
         padding: 0px 30px 30px 30px;
-        margin-top: 80px;
+        margin-top: 22%;
     }
 
     main {
@@ -152,16 +152,13 @@ footer {
 
     .invalidSearch h2 {
         margin-top: 5px;
-    }
-
-  
+    } 
 
     main h1 {
         padding: 8px;
         color: #666666;
         font-size: 1.6em;
         margin: 15px 10px 0px 10px;
-
     }
 
     footer {
@@ -179,7 +176,12 @@ footer {
         height: 32px;
         width: 123px;
         padding-right: 10px;
-        
+    }
+}
+
+@media only screen and (min-height: 668px) {
+    .invalidSearch {
+        margin-top: 45%;
     }
 }
 
