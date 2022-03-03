@@ -95,7 +95,7 @@ function HomePage() {
           ) : (
             searchInput.length > 0 ? (
               <>
-                <h1>os produtos mais vendidos</h1>
+                <h1>resultados para "{searchInput}"</h1>
                 <div className='cardList'>
                   {filteredResults.map((product: any) => {
                     return (
