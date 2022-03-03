@@ -13,7 +13,6 @@ function HomePage() {
   async function getProducts() {
     const products: any[] = await ProductService.getProducts()
     setProducts(products)
-    console.log(products)
   }
 
   useEffect(() => {
