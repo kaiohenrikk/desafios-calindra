@@ -287,11 +287,12 @@ footer p {
     }
 
     main #bottomImg {
-        position: relative;
+        align-self: end;
         width: 259px;
         height: 172px;
         top: 130px;
-        left: 77px;
+        left: 58px;
+        margin-top: 250px;
     }
 
     #bottomSection p {
@@ -325,11 +326,16 @@ footer p {
     }
 
     footer #followUs {
-        margin-left: 68%;
-        width: 100%;
+        display: block;
+        width: 138px;
+        left: 0;
         height: 100%;
-        padding-bottom: 0;
+        padding-bottom: 5px;
         margin-right: 0;
-        margin-bottom: 25px;
+    }
+
+    footer #contact {
+        width: 138px;
+        left: 0;
     }
 }
