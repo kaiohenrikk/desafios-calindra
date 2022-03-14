@@ -10,7 +10,8 @@ import ProductService from '../services/ProductServices';
       }
 
     it("Get Products", async () => {
-        const res = await ProductService.getProducts()
+        let search: any;
+        const res = await ProductService.getProducts(search ? search : "camiseta")
         const product = res[0]
 
         expect(res).not.toBeInstanceOf(Error)

@@ -10,39 +10,38 @@ import ProductService from '../services/ProductServices';
 function HomePage() {
   const [products, setProducts]: any[] = useState([])
 
-  async function getProducts() {
-    const products: any[] = await ProductService.getProducts()
+  async function getProducts(search: any) {
+    const products: any[] = await ProductService.getProducts(search ? search : "batata")
     setProducts(products)
   }
-
-  useEffect(() => {
-    getProducts()
-  }, []);
 
   const [searchInput, setSearchInput] = useState('');
 
   const [filteredResults, setFilteredResults] = useState([]);
 
-  const searchItems = (searchValue: string) => {
-    setSearchInput(searchValue)
+  const searchItems = (searchValue: any) => {
+    setSearchInput(searchValue.toLowerCase())
     if (searchValue !== '') {
       const filteredData = products.filter((item: any) => {
         return Object.values(item.name).join('').toLowerCase().includes(searchValue.toLowerCase())
       })
       setFilteredResults(filteredData)
-    }
-    else {
-      setFilteredResults(products)
+      } else {
+        setFilteredResults(products)
     }
   }
 
   const textInput: any = React.createRef();
 
+  useEffect(() => {
+    getProducts(searchInput)
+  }, [searchInput]);
+
   return (
     <div className='homePage'>
       <div>
         <header>
-          <a href="/" rel="noreferrer" target="self"><img className='logo' src={AmericanasLogoHeader} alt='Logo Americanas' /></a>
+          <a href="/" rel="noreferrer" target="_self"><img className='logo' src={AmericanasLogoHeader} alt='Logo Americanas' /></a>
 
           <SearchBar
             textInput={textInput}
@@ -53,6 +52,7 @@ function HomePage() {
                 }
               }
             }
+
             onClick={() => {
                 searchItems(textInput.current.value)
               }
@@ -104,9 +104,8 @@ function HomePage() {
                         title={product.name}
                         id={product.id}
                         score={product._meta.score.toString()}
-                        prices={product.id}
+                        rate={product._meta.score.toString()}
                         clicks={product._meta.visitsClickCount}
-                        times={product._meta.score.toString()[1]}
                       />
                     )
                   })}
@@ -123,9 +122,8 @@ function HomePage() {
                         title={product.name}
                         id={product.id}
                         score={product._meta.score.toString()}
-                        prices={product.id}
+                        rate={product.id}
                         clicks={product._meta.visitsClickCount}
-                        times={product._meta.score.toString()[1]}
                       />
                     )
                   })}
@@ -138,7 +136,7 @@ function HomePage() {
 
       <footer>
         <div className='footerTop'>
-          <a href="/" rel="noreferrer" target="self"><img className='logo' src={AmericanasLogoFooter} alt='Logo Americanas' /></a>
+          <a href="https://www.americanas.com.br/" rel="noreferrer" target="_blank"><img className='logo' src={AmericanasLogoFooter} alt='Logo Americanas' /></a>
           <p>Tudo. A toda hora. Em qualquer lugar.</p>
         </div>
         <div className='footerBottom'>
