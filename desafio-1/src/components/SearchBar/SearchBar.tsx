@@ -68,7 +68,6 @@ export const SearchBar = (props: any) => {
                     type="text"
                     placeholder="busque aqui seu produto"
                     onKeyPress={props.onKeyPress}
-                    onChange={props.onChange}
                 />
                 <button onClick={props.onClick}>
                     <img src={SearchIcon} alt="Search Icon" />
