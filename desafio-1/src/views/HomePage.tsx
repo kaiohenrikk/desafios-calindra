@@ -45,13 +45,13 @@ function HomePage() {
 
             onKeyPress={(e: any) => {
                 if (e.key === 'Enter') {
-                  getProducts(e.target.value)
+                  getProducts(e.target.value.toLowerCase())
                 }
               }
             }
 
             onClick={() => {
-                getProducts(textInput.current.value)
+                getProducts(textInput.current.value.toLowerCase())
               }
             }
           />
