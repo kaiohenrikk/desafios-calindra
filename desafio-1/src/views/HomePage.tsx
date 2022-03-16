@@ -6,7 +6,6 @@ import InvalidSearch from '../components/InvalidSearch'
 import AmericanasLogoHeader from '../assets/logos/americanas-branco.svg';
 import AmericanasLogoFooter from '../assets/logos/americanas-vermelho.svg';
 import CalindraLogo from '../assets/logos/calindra.svg';
-
 import ProductService from '../services/ProductServices';
 
 function HomePage() {
