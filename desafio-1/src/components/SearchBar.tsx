@@ -1,6 +1,6 @@
 import React from "react";
 import styled from 'styled-components';
-import SearchIcon from '../../assets/icons/search.svg';
+import SearchIcon from '../assets/icons/search.svg';
 
 
 const StyledSearchBar = styled.div`
@@ -58,8 +58,8 @@ const StyledSearchBar = styled.div`
     } 
 `;
 
-export const SearchBar = (props: any) => {    
-    
+export const SearchBar = (props: any) => {
+
     return (
         <StyledSearchBar>
             <div className="box">

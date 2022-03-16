@@ -1,10 +1,10 @@
 import React from "react";
 import styled from 'styled-components';
-import GoldenStar from '../../assets/icons/golden-star.png';
-import EmptyStar from '../../assets/icons/empty-star.png';
-import AmericanasCard from '../../assets/logos/americanas-logo.png'
+import GoldenStar from '../assets/icons/golden-star.png';
+import EmptyStar from '../assets/icons/empty-star.png';
+import AmericanasCard from '../assets/logos/americanas-logo.png'
 
-const StyledCard = styled.div `
+const StyledCard = styled.div`
     
     .cardGroup {
         display: flex;
@@ -60,26 +60,26 @@ export const Card = (props: any) => {
     return (
         <StyledCard>
             <div className="cardGroup">
-                <div 
+                <div
                     className="card"
                     key={props.id}
                 >
                     <div className="cardBody">
-                        <img src={AmericanasCard} alt={props.title} /> 
+                        <img src={AmericanasCard} alt={props.title} />
                         <h2 className="cardTitle">
-                            {props.title} 
+                            {props.title}
                         </h2>
                         <div className="score">
                             {defaultStar.map((star, key) => {
-                                if(key < props.score[0]) {
-                                    return <img key={key} src={GoldenStar} alt= 'Ratings' /> 
+                                if (key < props.score[0]) {
+                                    return <img key={key} src={GoldenStar} alt='Ratings' />
                                 }
-                                return <img key={key} src={star} alt= 'Ratings' /> 
-                            })}                                                      
+                                return <img key={key} src={star} alt='Ratings' />
+                            })}
                             ({props.clicks})
                         </div>
                         <h3 className="cardScore">
-                            Score: {props.rate} 
+                            Score: {props.rate}
                         </h3>
                         <p>
                             visite o site das Lojas Americanas para mais informações (:

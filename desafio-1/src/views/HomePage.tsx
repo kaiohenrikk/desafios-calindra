@@ -1,41 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/HomePage.css';
-import { SearchBar } from '../components/SearchBar/SearchBar';
+import { SearchBar } from '../components/SearchBar';
+import { Card } from '../components/Card';
+import InvalidSearch from '../components/InvalidSearch'
 import AmericanasLogoHeader from '../assets/logos/americanas-branco.svg';
 import AmericanasLogoFooter from '../assets/logos/americanas-vermelho.svg';
 import CalindraLogo from '../assets/logos/calindra.svg';
-import { Card } from '../components/Card/Card';
+
 import ProductService from '../services/ProductServices';
 
 function HomePage() {
-  const [products, setProducts]: any[] = useState([])
+  const [products, setProducts]: any[] = useState([]);
+  const [showError, setShowError] = useState(false);
+  const textInput: any = React.createRef();
+  const [title, setTitle] = useState("os produtos mais vendidos");
 
   async function getProducts(search: any) {
-    const products: any[] = await ProductService.getProducts(search ? search : "batata")
-    setProducts(products)
-  }
+    try {
+      const getProductsResult: any[] = await ProductService.getProducts(search ? search : "fritadeira");
 
-  const [searchInput, setSearchInput] = useState('');
+      if (search) {
+        setTitle(`resultados para "${search}"`);
+      }
 
-  const [filteredResults, setFilteredResults] = useState([]);
-
-  const searchItems = (searchValue: any) => {
-    setSearchInput(searchValue.toLowerCase())
-    if (searchValue !== '') {
-      const filteredData = products.filter((item: any) => {
-        return Object.values(item.name).join('').toLowerCase().includes(searchValue.toLowerCase())
-      })
-      setFilteredResults(filteredData)
-      } else {
-        setFilteredResults(products)
+      setProducts(getProductsResult);
+      setShowError(false);
+    } catch (err) {
+      console.log("getProducts.error: ", err);
+      setShowError(true);
     }
   }
 
-  const textInput: any = React.createRef();
-
   useEffect(() => {
-    getProducts(searchInput)
-  }, [searchInput]);
+    getProducts('')
+  }, []);
 
   return (
     <div className='homePage'>
@@ -47,89 +45,40 @@ function HomePage() {
             textInput={textInput}
 
             onKeyPress={(e: any) => {
-              if (e.key === 'Enter') {
-                  searchItems(e.target.value)
+                if (e.key === 'Enter') {
+                  getProducts(e.target.value)
                 }
               }
             }
 
             onClick={() => {
-                searchItems(textInput.current.value)
+                getProducts(textInput.current.value)
               }
             }
           />
         </header>
 
         <main>
-          {filteredResults.length === 0 && searchInput.length !== 0 ? (
-            <div className='invalidSearch'>
-              <h1>poxa, nenhum resultado para "{searchInput}"</h1>
-              <h2>Que tal pesquisar de novo seguindo as dicas abaixo? ;)</h2>
-              <div id='helpList'>
-                <ul>
-                  <li>Confira se o termo foi digitado certinho;</li>
-                  <li>Use menos palavras ou termos menos específicos;</li>
-                  <li>Tente outro produto.</li>
-                </ul>
-              </div>
-              <div className="helpOptions">
-                <div className="options">
-                  <h2 className="optionsText">precisa de ajuda? fala com a gente</h2>
-                  <p className="optionsText">Nosso atendimento é de segunda a sexta, das 8h às 20h, e sábado, das 8h às 18h :)</p>
-                </div>
-                <div className="options">
-                  <h2 className="optionsText">por telefone:</h2>
-                  <p className="optionsText">
-                    Capitais e regiões metropolitanas: 4003-4848*<br />
-                    Estado do Rio de Janeiro: 0800 229 4848<br />
-                    Outras regiões: 041 11 4003-4848*<br />
-                  </p>
-                </div>
-                <div className="options">
-                  <h2 className="optionsText">por e-mail:</h2>
-                  <p className="optionsText">atendimento.acom@americanas.com</p>
-                  <p className="optionsText">Se preferir, acesse nossas <a href='/'>perguntas frequentes</a> ;)</p>
-                </div>
-              </div>
-            </div>
+          {showError ? (
+            <InvalidSearch />
           ) : (
-            searchInput.length > 0 ? (
-              <>
-                <h1>resultados para "{searchInput}"</h1>
-                <div className='cardList'>
-                  {filteredResults.map((product: any) => {
-                    return (
-                      <Card
-                        key={product.id}
-                        title={product.name}
-                        id={product.id}
-                        score={product._meta.score.toString()}
-                        rate={product._meta.score.toString()}
-                        clicks={product._meta.visitsClickCount}
-                      />
-                    )
-                  })}
-                </div>
-              </>
-            ) : (
-              <>
-                <h1>os produtos mais vendidos</h1>
-                <div className='cardList'>
-                  {products.map((product: any) => {
-                    return (
-                      <Card
-                        key={product.id}
-                        title={product.name}
-                        id={product.id}
-                        score={product._meta.score.toString()}
-                        rate={product.id}
-                        clicks={product._meta.visitsClickCount}
-                      />
-                    )
-                  })}
-                </div>
-              </>
-            )
+            <>
+              <h1>{title}</h1>
+              <div className="cardList">
+                {products.map((product: any) => {
+                  return (
+                    <Card
+                      key={product.id}
+                      title={product.name}
+                      id={product.id}
+                      score={product._meta.score.toString()}
+                      rate={product._meta.score.toString()}
+                      clicks={product._meta.visitsClickCount}
+                    />
+                  );
+                })}
+              </div>
+            </>
           )}
         </main>
       </div>
